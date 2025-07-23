@@ -21,7 +21,7 @@ def load_categories_from_json(filename: str) -> list[Category]:
 
     try:
         # Пробуем интерпретировать json_data как путь к файлу
-        with open(DATA_PATH, 'r', encoding='utf-8') as file:
+        with open(DATA_PATH, "r", encoding="utf-8") as file:
             data = json.load(file)
 
             categories = []
@@ -32,14 +32,12 @@ def load_categories_from_json(filename: str) -> list[Category]:
                         name=product_data["name"],
                         description=product_data["description"],
                         price=product_data["price"],
-                        quantity=product_data["quantity"]
+                        quantity=product_data["quantity"],
                     )
                     products.append(product)
 
                 category = Category(
-                    name=category_data["name"],
-                    description=category_data["description"],
-                    products=products
+                    name=category_data["name"], description=category_data["description"], products=products
                 )
                 categories.append(category)
 

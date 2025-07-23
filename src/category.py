@@ -13,6 +13,7 @@ class Category:
         category_count: Количество категорий.
         product_count: Общее количество продуктов в категории.
     """
+
     name: str
     description: str
     products: list[Product]
@@ -34,3 +35,7 @@ class Category:
         self.products = products
         Category.category_count += 1
         Category.product_count += sum(product.quantity for product in products)
+
+    def __repr__(self) -> str:
+        """Возвращает строковое представление объекта."""
+        return f"Category({self.name}, {len(self.products)} products)"

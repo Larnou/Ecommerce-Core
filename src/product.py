@@ -28,3 +28,7 @@ class Product:
         self.description = description
         self.price = price
         self.quantity = quantity
+
+    def __repr__(self) -> str:
+        """Возвращает строковое представление объекта."""
+        return f"Product({self.name}, {self.price}, {self.quantity})"
