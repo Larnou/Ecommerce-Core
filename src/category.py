@@ -20,6 +20,7 @@ class Category:
 
     category_count = 0
     product_count = 0
+    _product_quantity = 0
 
     def __init__(self, name, description, products) -> None:
         """
@@ -32,10 +33,34 @@ class Category:
         """
         self.name = name
         self.description = description
-        self.products = products
+        self.__products = products
         Category.category_count += 1
         Category.product_count += sum(product.quantity for product in products)
+        Category._product_quantity = len(products)
 
-    def __repr__(self) -> str:
-        """Возвращает строковое представление объекта."""
-        return f"Category({self.name}, {len(self.products)} products)"
+    def add_product(self, product: Product) -> None:
+        """
+        Добавляет Product в категорию.
+
+        Args:
+            product: Название категории.
+        """
+        self.__products.append(product)
+        Category.product_count += product.quantity
+
+    @property
+    def products(self):
+        """
+        Выводит информацию о продуктах, принадлежащих этой категории в формате "Название, Цена руб. Остаток: Кол-во шт.
+
+        Returns:
+            Информация о продуктах в указанном формате.
+        """
+        info = ""
+        for product in self.__products:
+            info += f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт.\n"
+        return info
+
+    @property
+    def product_quantity(self):
+        return Category._product_quantity
