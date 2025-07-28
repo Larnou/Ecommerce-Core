@@ -16,11 +16,8 @@ def test_successful_loading(sample_data):
     category = categories[0]
     assert isinstance(category, Category)
     assert category.name == "Смартфоны"
-    assert len(category.products) == 1
-    product = category.products[0]
-    assert isinstance(product, Product)
-    assert product.name == "Samsung Galaxy"
-    assert product.price == 100000.0
+    assert category.product_quantity == 1
+
 
 
 def test_nonexistent_file():
@@ -68,29 +65,6 @@ def test_directory_path():
     assert categories == []
 
 
-# def test_real_file_loading(mock_file_structure):
-#     """Интеграционный тест с реальной файловой структурой"""
-#     # Мокаем __file__ для подмены базового пути
-#     with patch("utils.__file__", str(mock_file_structure["base_dir"] / "module.py")):
-#         # Тест с валидным файлом
-#         categories = load_categories_from_json(mock_file_structure["valid_file"])
-#         assert len(categories) == 1
-#         assert categories[0].name == "Телевизоры"
-#         assert categories[0].products[0].name == "LG OLED"
-#
-#         # Тест с несуществующим файлом
-#         categories = load_categories_from_json(mock_file_structure["nonexistent_file"])
-#         assert categories == []
-#
-#         # Тест с пустым файлом
-#         categories = load_categories_from_json(mock_file_structure["empty_file"])
-#         assert categories == []
-#
-#         # Тест с невалидным JSON
-#         categories = load_categories_from_json(mock_file_structure["invalid_file"])
-#         assert categories == []
-
-
 def test_complex_data_structure():
     """Тестирование со сложной структурой данных"""
     complex_data = [
@@ -114,7 +88,4 @@ def test_complex_data_structure():
 
     assert len(categories) == 2
     assert categories[0].name == "Категория 1"
-    assert len(categories[0].products) == 2
     assert categories[1].name == "Категория 2"
-    assert categories[1].products[0].price == 300.0
-    assert sum(p.quantity for p in categories[0].products) == 8

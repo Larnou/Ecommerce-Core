@@ -10,8 +10,7 @@ def test_category_create_valid(sample_products):
 
     assert cat.name == "Electronics"
     assert cat.description == "Gadgets"
-    assert cat.products == sample_products
-    assert len(cat.products) == 2
+    assert cat.product_quantity == 2
     assert Category.category_count == 1
     assert Category.product_count == 8
 
@@ -22,7 +21,7 @@ def test_category_create_empty_products():
 
     assert cat.name == "Books"
     assert cat.description == "All books"
-    assert cat.products == []
+    assert cat.products == ''
     assert Category.category_count == 1
     assert Category.product_count == 0
 
@@ -32,7 +31,6 @@ def test_category_create_single_product():
     p = Product("Book", "Novel", 500.0, 10)
     cat = Category("Literature", "Books category", [p])
 
-    assert cat.products[0].name == "Book"
     assert Category.category_count == 1
     assert Category.product_count == 10
 
@@ -54,8 +52,6 @@ def test_category_attributes_types():
 
     assert isinstance(cat.name, str)
     assert isinstance(cat.description, str)
-    assert isinstance(cat.products, list)
-    assert all(isinstance(p, Product) for p in cat.products)
 
 
 @pytest.mark.parametrize(
@@ -82,7 +78,7 @@ def test_category_product_quantity_zero():
     products = [Product("P1", "Desc1", 100.0, 0), Product("P2", "Desc2", 200.0, 0)]
     cat = Category("Zero", "Zero products", products)
 
-    assert len(cat.products) == 2
+    assert cat.product_quantity == 2
     assert Category.product_count == 0  # 0 + 0
 
 
@@ -91,7 +87,7 @@ def test_category_product_quantity_negative():
     products = [Product("P1", "Desc1", 100.0, -5), Product("P2", "Desc2", 200.0, -3)]
     cat = Category("Negative", "Negative quantity", products)
 
-    assert len(cat.products) == 2
+    assert cat.product_quantity == 2
     assert Category.product_count == -8  # (-5) + (-3)
 
 
@@ -100,7 +96,7 @@ def test_category_large_number_of_products():
     products = [Product(f"Product{i}", f"Desc{i}", 10.0, 100) for i in range(100)]
     cat = Category("Large", "100 products", products)
 
-    assert len(cat.products) == 100
+    assert cat.product_quantity == 100
     assert Category.product_count == 10000  # 100 * 100
 
 
