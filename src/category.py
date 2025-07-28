@@ -38,7 +38,6 @@ class Category:
         Category.product_count += sum(product.quantity for product in products)
         Category._product_quantity = len(products)
 
-
     def add_product(self, product: Product) -> None:
         """
         Добавляет Product в категорию.

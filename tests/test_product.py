@@ -40,12 +40,7 @@ def test_product_price_setter_invalid(capsys):
 
 def test_product_new_product_classmethod():
     """Проверка создания продукта через класс-метод."""
-    product_data = {
-        "name": "Наушники",
-        "description": "Беспроводные",
-        "price": "7990.99",
-        "quantity": "20"
-    }
+    product_data = {"name": "Наушники", "description": "Беспроводные", "price": "7990.99", "quantity": "20"}
 
     product = Product.new_product(product_data)
 
@@ -70,7 +65,7 @@ def test_product_new_product_invalid_types():
         "name": "Клавиатура",
         "description": "Механическая",
         "price": "десять тысяч",  # Не число
-        "quantity": "пять"  # Не число
+        "quantity": "пять",  # Не число
     }
 
     with pytest.raises(ValueError):
@@ -106,7 +101,8 @@ def test_product_price_readonly_access():
 
     # Проверка, что атрибут __price недоступен по этому имени
     with pytest.raises(AttributeError):
-        __price = product.__price
+        price = product.__price
+        print(price)
 
     # Но доступен по искаженному имени (name mangling)
     assert product._Product__price == 35000

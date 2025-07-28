@@ -21,7 +21,7 @@ def test_category_create_empty_products():
 
     assert cat.name == "Books"
     assert cat.description == "All books"
-    assert cat.products == ''
+    assert cat.products == ""
     assert Category.category_count == 1
     assert Category.product_count == 0
 
@@ -31,6 +31,7 @@ def test_category_create_single_product():
     p = Product("Book", "Novel", 500.0, 10)
     cat = Category("Literature", "Books category", [p])
 
+    assert cat.name == "Literature"
     assert Category.category_count == 1
     assert Category.product_count == 10
 

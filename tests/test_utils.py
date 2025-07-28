@@ -2,7 +2,6 @@ import json
 from unittest.mock import mock_open, patch
 
 from src.category import Category
-from src.product import Product
 from src.utils import load_categories_from_json
 
 
@@ -17,7 +16,6 @@ def test_successful_loading(sample_data):
     assert isinstance(category, Category)
     assert category.name == "Смартфоны"
     assert category.product_quantity == 1
-
 
 
 def test_nonexistent_file():

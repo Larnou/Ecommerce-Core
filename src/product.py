@@ -29,7 +29,6 @@ class Product:
         self.__price = price
         self.quantity = quantity
 
-
     @classmethod
     def new_product(cls, product_data: dict):
         """
@@ -69,5 +68,3 @@ class Product:
             print("Цена не должна быть нулевая или отрицательная")
         else:
             self.__price = price
-
-
