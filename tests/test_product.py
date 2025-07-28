@@ -111,11 +111,11 @@ def test_product_price_readonly_access():
 def test_product_string_representation():
     """Проверка строкового представления продукта."""
     product = Product("SSD", "1TB NVMe", 8000, 25)
-    representation = str(product)
 
-    # Если не реализован __str__, используем дефолтное представление
-    # Для полноты можно добавить метод __str__ в класс
-    assert "object at" in representation  # Дефолтное представление
+    assert str(product) == "SSD, 8000 руб. Остаток: 25 шт."
 
-    # Альтернатива: реализовать __str__ и проверять:
-    # assert str(product) == "SSD, 8000 руб. Остаток: 25 шт."
+def test_product_addition():
+    prod1 = Product("Product1", "Desc1", 100.0, 3)
+    prod2 = Product("Product2", "Desc2", 200.0, 5)
+
+    assert prod1 + prod2 == 1300.0

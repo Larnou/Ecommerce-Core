@@ -49,7 +49,7 @@ class Category:
         Category.product_count += product.quantity
 
     @property
-    def products(self):
+    def products(self) -> str:
         """
         Выводит информацию о продуктах, принадлежащих этой категории в формате "Название, Цена руб. Остаток: Кол-во шт.
 
@@ -61,6 +61,16 @@ class Category:
             info += f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт.\n"
         return info
 
+    def __str__(self) -> str:
+        """
+        Возвращает строковое представление категории.
+
+        Returns:
+            Строковое представление продукта в формате "Название,
+            количество продуктов: общее кол-во продуктов в категории."
+        """
+        return f"{self.name}, количество продуктов: {Category.product_count} шт."
+
     @property
-    def product_quantity(self):
+    def product_quantity(self) -> int:
         return Category._product_quantity
