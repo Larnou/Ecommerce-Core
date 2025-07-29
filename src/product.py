@@ -1,3 +1,6 @@
+from typing import Any
+
+
 class Product:
     """
     Класс Product, содержит в себе инормацию о названии, описании, цене и количестве товаров.
@@ -47,7 +50,7 @@ class Product:
         return cls(name, description, price, quantity)
 
     @property
-    def price(self):
+    def price(self) -> float:
         """
         Возвращает цену проудкта.
 
@@ -57,7 +60,7 @@ class Product:
         return self.__price
 
     @price.setter
-    def price(self, price):
+    def price(self, price) -> None:
         """
         Задаёт новую цену товара
 
@@ -68,3 +71,15 @@ class Product:
             print("Цена не должна быть нулевая или отрицательная")
         else:
             self.__price = price
+
+    def __str__(self) -> str:
+        """
+        Возвращает строковое представление продукта.
+
+        Returns:
+            Строковое представление продукта в формате "Название, Цена руб. Остаток кол-во шт."
+        """
+        return f"{self.name}, {self.__price} руб. Остаток: {self.quantity} шт."
+
+    def __add__(self, other) -> Any:
+        return self.__price * self.quantity + other.__price * other.quantity

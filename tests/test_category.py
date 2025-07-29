@@ -115,3 +115,10 @@ def test_category_shared_counters_multiple_instances(sample_products):
     assert cat3.name == "Cat3"
     assert Category.category_count == 3
     assert Category.product_count == 10
+
+
+def test_category_string_representation(sample_products):
+    """Проверка строкового представления категории."""
+    cat1 = Category("Cat1", "Desc1", sample_products)
+
+    assert str(cat1) == "Cat1, количество продуктов: 8 шт."
