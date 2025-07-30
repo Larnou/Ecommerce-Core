@@ -1,7 +1,7 @@
 import pytest
 
-from src.category import Category
-from src.product import Product
+from src.classes.category import Category
+from src.classes.product import Product
 
 
 def test_category_create_valid(sample_products):

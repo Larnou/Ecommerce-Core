@@ -1,4 +1,4 @@
-from src.product import Product
+from src.classes.product import Product
 
 
 class Category:
@@ -45,8 +45,12 @@ class Category:
         Args:
             product: Название категории.
         """
-        self.__products.append(product)
-        Category.product_count += product.quantity
+
+        if isinstance(product, Product) and isinstance(product, Product):
+            self.__products.append(product)
+            Category.product_count += product.quantity
+        else:
+            raise TypeError()
 
     @property
     def products(self) -> str:
