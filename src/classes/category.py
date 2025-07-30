@@ -46,7 +46,7 @@ class Category:
             product: Название категории.
         """
 
-        if isinstance(product, Product) and isinstance(product, Product):
+        if isinstance(product, Product):
             self.__products.append(product)
             Category.product_count += product.quantity
         else:
