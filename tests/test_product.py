@@ -1,6 +1,7 @@
 import pytest
 
-from src.product import Product
+from src.classes.category import Category
+from src.classes.product import Product
 
 
 def test_product_initialization():
@@ -114,8 +115,42 @@ def test_product_string_representation():
 
     assert str(product) == "SSD, 8000 руб. Остаток: 25 шт."
 
+
 def test_product_addition():
     prod1 = Product("Product1", "Desc1", 100.0, 3)
     prod2 = Product("Product2", "Desc2", 200.0, 5)
 
     assert prod1 + prod2 == 1300.0
+
+
+def test_add_same_type_products():
+    """Проверка сложения двух продуктов одного типа."""
+    # Создаем два продукта
+    product1 = Product("Ноутбук", "Игровой", 100000, 2)
+    product2 = Product("Смартфон", "Флагман", 80000, 3)
+
+    # Вычисляем ожидаемую сумму: (100000 * 2) + (80000 * 3)
+    expected = 100000 * 2 + 80000 * 3
+
+    # Проверяем результат сложения
+    assert product1 + product2 == expected
+
+    # Проверяем коммутативность операции
+    assert product2 + product1 == expected
+
+
+def test_add_different_types():
+    """Проверка ошибки при сложении с объектом другого типа."""
+    product = Product("Планшет", "10 дюймов", 50000, 1)
+
+    # Список объектов разных типов
+    invalid_objects = [100, "строка", {"name": "Словарь"}, None, Category("Категория", "Описание", [])]
+
+    for obj in invalid_objects:
+        with pytest.raises(TypeError):
+            # Пытаемся сложить продукт с не-продуктом
+            result = product + obj
+
+        with pytest.raises(TypeError):
+            # Проверяем обратную операцию
+            result = obj + product

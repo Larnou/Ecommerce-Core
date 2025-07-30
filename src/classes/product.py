@@ -3,7 +3,7 @@ from typing import Any
 
 class Product:
     """
-    Класс Product, содержит в себе инормацию о названии, описании, цене и количестве товаров.
+    Класс Product, содержит в себе информацию о названии, описании, цене и количестве товаров.
 
     Attributes:
         name: Название продукта.
@@ -82,4 +82,7 @@ class Product:
         return f"{self.name}, {self.__price} руб. Остаток: {self.quantity} шт."
 
     def __add__(self, other) -> Any:
-        return self.__price * self.quantity + other.__price * other.quantity
+        if type(self) == type(other):
+            return self.__price * self.quantity + other.__price * other.quantity
+        else:
+            raise TypeError()

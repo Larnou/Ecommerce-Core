@@ -1,7 +1,7 @@
 import json
 from unittest.mock import mock_open, patch
 
-from src.category import Category
+from src.classes.category import Category
 from src.utils import load_categories_from_json
 
 

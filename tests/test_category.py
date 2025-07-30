@@ -1,7 +1,7 @@
 import pytest
 
-from src.category import Category
-from src.product import Product
+from src.classes.category import Category
+from src.classes.product import Product
 
 
 def test_category_create_valid(sample_products):
@@ -122,3 +122,31 @@ def test_category_string_representation(sample_products):
     cat1 = Category("Cat1", "Desc1", sample_products)
 
     assert str(cat1) == "Cat1, количество продуктов: 8 шт."
+
+
+def test_category_add_valid_product():
+    """Проверка добавления корректного продукта."""
+    # Подготовка
+    category = Category("Категория", "Описание", [])
+    product = Product("Товар", "Описание", 100, 5)
+
+    # Действие
+    category.add_product(product)
+
+    # Проверки
+    assert len(category._Category__products) == 1
+    assert product in category._Category__products
+    assert Category.product_count == 5
+
+
+def test_category_add_multiple_products():
+    """Проверка добавления нескольких продуктов."""
+    category = Category("Категория", "Описание", [])
+    products = [Product("Товар 1", "Описание", 100, 3), Product("Товар 2", "Описание", 200, 7)]
+
+    for p in products:
+        category.add_product(p)
+
+    assert len(category._Category__products) == 2
+    assert all(p in category._Category__products for p in products)
+    assert Category.product_count == 10

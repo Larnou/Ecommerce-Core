@@ -1,8 +1,8 @@
 import json
 import os
 
-from src.category import Category
-from src.product import Product
+from src.classes.category import Category
+from src.classes.product import Product
 
 
 def load_categories_from_json(filename: str) -> list[Category]:
