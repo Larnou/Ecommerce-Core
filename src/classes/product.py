@@ -1,7 +1,10 @@
 from typing import Any
 
+from src.classes.baseproduct import BaseProduct
+from src.classes.reprmixin import ReprMixin
 
-class Product:
+
+class Product(BaseProduct, ReprMixin):
     """
     Класс Product, содержит в себе информацию о названии, описании, цене и количестве товаров.
 
@@ -27,10 +30,12 @@ class Product:
             price: Цена продукта.
             quantity: Количество продуктов.
         """
+
         self.name = name
         self.description = description
         self.__price = price
         self.quantity = quantity
+        super().__init__(name, description, price, quantity)
 
     @classmethod
     def new_product(cls, product_data: dict):
@@ -72,6 +77,12 @@ class Product:
         else:
             self.__price = price
 
+    def __add__(self, other) -> Any:
+        if type(self) is type(other):
+            return self.__price * self.quantity + other.__price * other.quantity
+        else:
+            raise TypeError()
+
     def __str__(self) -> str:
         """
         Возвращает строковое представление продукта.
@@ -80,9 +91,3 @@ class Product:
             Строковое представление продукта в формате "Название, Цена руб. Остаток кол-во шт."
         """
         return f"{self.name}, {self.__price} руб. Остаток: {self.quantity} шт."
-
-    def __add__(self, other) -> Any:
-        if type(self) == type(other):
-            return self.__price * self.quantity + other.__price * other.quantity
-        else:
-            raise TypeError()

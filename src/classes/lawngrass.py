@@ -15,6 +15,7 @@ class LawnGrass(Product):
         germination_period: Срок прорастания.
         color: Цвет.
     """
+
     def __init__(self, name, description, price, quantity, country, germination_period, color):
         """
         Создаёт объект Product.

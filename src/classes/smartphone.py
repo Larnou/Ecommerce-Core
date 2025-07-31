@@ -16,6 +16,7 @@ class Smartphone(Product):
         memory: Объем встроенной памяти.
         color: Цвет.
     """
+
     def __init__(self, name, description, price, quantity, efficiency, model, memory, color):
         """
         Создаёт объект Product.
